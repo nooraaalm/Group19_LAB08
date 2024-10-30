@@ -69,4 +69,3 @@ void LED_ON_OFF(char choice) {
         GPIO_PORTF_DATA_R |= 0x00;
     }
 }
->>>>>>> 62c7ba6ca42010e27d1057fd326826380b1406ca
