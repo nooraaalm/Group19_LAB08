@@ -38,3 +38,14 @@ void UART0_Init(void) {
         GPIO_PORTA_PCTL_R = (GPIO_PORTA_PCTL_R & 0xFFFFFF00) | 0x11;
         GPIO_PORTA_DEN_R |= 0x03;
 }
+
+char UART0_Received(void) {
+    while ((UART0_FR_R & 0x10) != 0);
+    return UART0_DR_R & 0xFF;           // Read and return the received character
+}
+
+// Send data to UART0
+void UART0_Send(char data) {
+    while ((UART0_FR_R & 0x20) != 0);   // Wait until the transmitter is not full
+    UART0_DR_R = data;                  // Send the character
+}
