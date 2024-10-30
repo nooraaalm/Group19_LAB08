@@ -7,7 +7,7 @@ char UART0_Received(void);
 void UART0_Send(char data);
 void LED_Init(void);
 void LED_ON_OFF(char choice);
-nt main(void) {
+int main(void) {
 
     UART0_Init();
 
@@ -18,4 +18,9 @@ nt main(void) {
         UART0_Send(receivedChar);
         LED_ON_OFF(receivedChar);
     }
+}
+void LED_Init(void) {
+    SYSCTL_RCGCGPIO_R |= 0x20;
+    GPIO_PORTF_DIR_R |= 0x0E;
+    GPIO_PORTF_DEN_R |= 0x0E;
 }
